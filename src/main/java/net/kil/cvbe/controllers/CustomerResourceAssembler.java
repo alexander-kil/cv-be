@@ -18,7 +18,7 @@ class CustomerResourceAssembler implements ResourceAssembler<Customer, Resource<
     @Override
     public Resource<Customer> toResource(Customer customer) {
         return new Resource<>(customer,
-                linkTo(methodOn(EmployeeController.class).one(customer.getId())).withSelfRel(),
-                linkTo(methodOn(EmployeeController.class).all()).withRel("customers"));
+                linkTo(methodOn(CustomerController.class).one(customer.getId())).withSelfRel(),
+                linkTo(methodOn(CustomerController.class).all()).withRel("customers"));
     }
 }
