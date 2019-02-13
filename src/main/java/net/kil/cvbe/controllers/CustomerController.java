@@ -5,11 +5,13 @@
 package net.kil.cvbe.controllers;
 
 import net.kil.cvbe.data.entity.Customer;
+import net.kil.cvbe.exceptions.CustomerNotFoundException;
 import net.kil.cvbe.repositories.CustomerRepository;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -43,5 +45,13 @@ public class CustomerController {
 
         return new Resources<>(customer,
                 linkTo(methodOn(CustomerController.class).all()).withSelfRel());
+    }
+    @GetMapping("/{id}")
+    public Resource<Customer> one(@PathVariable Long id) {
+
+        Customer employee = repository.findById(id)
+                .orElseThrow(() -> new CustomerNotFoundException(id));
+
+        return assembler.toResource(employee);
     }
 }
