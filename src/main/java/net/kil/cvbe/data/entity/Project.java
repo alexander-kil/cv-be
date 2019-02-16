@@ -9,6 +9,7 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -27,6 +28,8 @@ public class Project {
     private String description;
     @NotNull(message = "project.months.required")
     private Integer months;
+    @NotNull(message = "project.startedAt.required")
+    private LocalDate startedAt;
 
     @ManyToOne
     @NotNull(message = "project.customer.required")
