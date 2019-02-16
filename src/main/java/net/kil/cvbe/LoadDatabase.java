@@ -14,6 +14,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.time.LocalDate;
+
 @Configuration
 @Slf4j
 class LoadDatabase {
@@ -38,6 +40,7 @@ class LoadDatabase {
                     name("Project 1").
                     description("Some project 1").
                     customer(cust_1).
+                    startedAt(LocalDate.of(2001, 10, 1)).
                     months(10).
                     member(Member.builder().
                             employee(empp1).
@@ -49,6 +52,7 @@ class LoadDatabase {
                     name("Project 2").
                     description("Some project 2").
                     customer(cust_2).
+                    startedAt(LocalDate.of(2017, 11, 1)).
                     months(2).
                     member(Member.builder().employee(empp1).build()).
                     build());
